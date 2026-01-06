@@ -11,7 +11,7 @@ class LoggingMiddleware:
         self.track_views = {
             'add'
         }
-        print("🟢 MIDDLEWARE INITIALIZED!")
+        print("MIDDLEWARE INITIALIZED!")
 
     def __call__(self,request):
         try:
@@ -27,7 +27,7 @@ class LoggingMiddleware:
         if hasattr(request,'middleware_start_time') and view_name:
             duration = time.time() - request.middleware_start_time
             # if view_name == 'add_post':
-            #     logger.info(f"⏱️ {view_name} took {duration:.3f} seconds")
+            #     logger.info(f"{view_name} took {duration:.3f} seconds")
         
             RequestLog.objects.create(
                 view_name =view_name,
@@ -58,6 +58,6 @@ class GlobalContextMiddleware:
             'SITE_NAME': self.site_name,
             'Current_Time': timezone.now(),
         }
-        print("🟢 GlobalContextMiddleware executed!")  # Debug
+        print("GlobalContextMiddleware executed!")  # Debug
         return self.get_response(request)
     
